@@ -185,24 +185,59 @@
     }
     writeOutput("</table>");
     writeOutput("<br>");
+    writeOutput("<br>");
+
+    // Queries, the final frontier
+    writeOutput("<br><b><i>Queries</i></b><br>");
+    /*
+    // writing a new query
+    WeaponQuery = queryExecute(
+        "SELECT Name, Price, Type
+        FROM Weapons
+        WHERE Price < 500000",
+        [],
+        {
+        }
+
+    );*/
+
+    // reading from a JSON file in the same folder
+    filePath =  expandPath("./weapon_data.json");
+
+    // reading the file content
+    jsonString = fileRead(filePath);
+
+    // parsing the JSON string into a ColdFusion variable
+    WeaponDataArray = deserializeJSON(jsonString);
+
+    // creating our own filter with an array manually
+    FilteredWeapons = [];
+
+    for (weaponStruct in WeaponDataArray) {
+        if(weaponStruct.Price > 500000) {
+            arrayAppend(FilteredWeapons, weaponStruct);
+        }
+    }
+
+    writeOutput("<h2><b><i>Data loaded and filtered from JSON:</i></vb></h2>");
+
+    // Looping through the query results
+    writeOutput('<table border="1" cellpadding="5" cellspacing="0"> ');
+
+    // we use a for loop here
+    for(row in FilteredWeapons) {
+        writeOutput(
+            row.Name & " costs " & row.Price & " gp and is a " & row.Type & " weapon." & "<br>"
+        );
+    }
+
+    writeOutput("</table>");
+
+    writeOutput(("<br> HI <br>"));
+
+    
 
 </cfscript>
 
-<!-- To continue studying, would be very useful for work @ TesiSquare -->
-<cfquery name="FruitQuery" datasource = "fruit">
-    SELECT Name, Price
-    FROM Fruit
-    WHERE Price < 7
-</cfquery>
-
-<cfloop query = "FruitQuery">
-    <cfoutput>
-        #FruitQuery.Name# costs #FruitQuery.Price# <br>
-    </cfoutput>
-</cfloop>
-
-<cfoutput>
-    <br> HI <br>
-</cfoutput>
 
 </body>

@@ -1,0 +1,22 @@
+[
+    {
+        "Name": "Dragon Hunter Lance",
+        "Price": 35000000,
+        "Type": "Stab"
+    },
+    {
+        "Name": "Dragon Claws",
+        "Price": 70000000,
+        "Type": "Slash"
+    },
+    {
+        "Name": "Twisted Bow",
+        "Price": 2147483647,
+        "Type": "Bow"
+    },
+    {
+        "Name": "Osmuntum's Fang",
+        "Price": 15000000,
+        "Type": "Stab"
+    }
+]
